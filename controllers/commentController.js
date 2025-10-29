@@ -15,6 +15,14 @@ class CommentController {
         })
         return res.json(comments)
     }
+    async deleteComment (req, res) {
+            const {id} = req.params
+    
+            const deletedComment = await Comment.destroy({
+                where: {id}
+            })
+            return res.json(deletedComment)
+        }
 }
 
 module.exports = new CommentController()

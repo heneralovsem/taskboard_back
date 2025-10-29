@@ -5,7 +5,7 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING},
-    name: {type: DataTypes.STRING},
+    userName: {type: DataTypes.STRING},
     role: {type: DataTypes.STRING, defaultValue: 'USER'}
 })
 
@@ -17,11 +17,13 @@ const Board = sequelize.define('board', {
 const Column = sequelize.define('column', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING, allowNull: false},
+    order: {type: DataTypes.INTEGER, allowNull: false}
 })
 const Task = sequelize.define('task', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING},
+    order: {type:DataTypes.INTEGER, allowNull: false}
 })
 
 const BoardUsers = sequelize.define('board_user', {

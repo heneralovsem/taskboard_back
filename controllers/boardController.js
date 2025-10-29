@@ -26,7 +26,7 @@ class BoardController {
                 where: {
                 id: {[Op.in]: userBoardIds}
             },
-                include: [{model: User, as: 'boardUsers', attributes: ['id', 'name', 'email']}]
+                include: [{model: User, as: 'boardUsers', attributes: ['id', 'userName', 'email']}]
             }
         )
         return res.json(boards)
@@ -38,11 +38,21 @@ class BoardController {
             where: {id},
             include: [
                 {model: Column, as: 'columns', include: [{model: Task, as: 'tasks'}]},
-                {model: User, as: 'boardUsers', attributes: ['id', 'name', 'email']}
+                {model: User, as: 'boardUsers', attributes: ['id', 'userName', 'email']}
             ]
         })
         res.json(board)
     }
+
+    async deleteBoard (req, res) {
+        const {id} = req.params
+
+        const deletedBoard = await Board.destroy({
+            where: {id}
+        })
+        return res.json(deletedBoard)
+    }
+
     async inviteUser (req, res) {
         const {boardId, userId} = req.body
        const newUser =  await BoardUsers.create({
@@ -50,6 +60,14 @@ class BoardController {
             userId: userId,
         })
         return res.json(newUser)
+    }
+    async removeUser (req, res) {
+        const {id} = req.params
+
+        const removedUser = await BoardUsers.destroy({
+            where: {id}
+        })
+        return res.json(removedUser)
     }
 }
 

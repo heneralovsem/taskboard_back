@@ -22,6 +22,14 @@ class TaskController {
         const tasks = await Task.findAll()
         return res.json(tasks)
     }
+    async deleteTask (req, res) {
+        const {id} = req.params
+
+        const deletedTask = await Task.destroy({
+            where: {id}
+        })
+        return res.json(deletedTask)
+    }
     async assignUser(req, res) {
         const {taskId, email} = req.body
         const user = await User.findOne({

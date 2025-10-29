@@ -7,6 +7,8 @@ router.post('/', boardController.createBoard)
 router.post('/users', boardController.inviteUser)
 router.get('/', boardController.getAll)
 router.get('/:id', boardController.getOneBoard)
+router.delete('/:id', boardController.deleteBoard)
+router.delete('/users/:id', boardController.removeUser)
 
 
 

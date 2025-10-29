@@ -12,6 +12,15 @@ class ColumnController {
         const columns = await Column.findAll()
         return res.json(columns)
     }
+
+    async deleteColumn (req, res) {
+        const {id} = req.params
+
+        const deletedColumn = await Column.destroy({
+            where: {id}
+        })
+        return res.json(deletedColumn)
+    }
 }
 
 module.exports = new ColumnController()

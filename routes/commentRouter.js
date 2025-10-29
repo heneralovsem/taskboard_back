@@ -5,6 +5,7 @@ const commentController = require('../controllers/commentController')
 
 router.post('/', commentController.createComment )
 router.get('/', commentController.getTaskComments)
+router.delete('/:id', commentController.deleteComment)
 
 
 
