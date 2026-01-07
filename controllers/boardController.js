@@ -39,6 +39,10 @@ class BoardController {
             include: [
                 {model: Column, as: 'columns', include: [{model: Task, as: 'tasks'}]},
                 {model: User, as: 'boardUsers', attributes: ['id', 'userName', 'email']}
+            ],
+            order: [
+                [{model: Column, as: 'columns'}, 'order', 'ASC'],
+                [{model: Column, as: 'columns'}, {model: Task, as: 'tasks'}, 'order', 'ASC']
             ]
         })
         res.json(board)
